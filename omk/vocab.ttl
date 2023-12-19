@@ -1,46 +1,72 @@
-# Définition des classes
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix : <#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix o: <http://omeka.org/s/vocabs/o#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix olympics: <https://example.com/ontologies/olympics#> .
 
-:Sportif a rdf:Class ;
-    rdfs:label "Sportif" .
+<https://example.com/ontologies/olympics#> a owl:Ontology ;
+    dcterms:title "Jeux Olympiques Ontology" .
 
-:JeuxOlympiques a rdf:Class ;
-    rdfs:label "Jeux Olympiques" .
+olympics:Sportif a rdfs:Class ;
+    rdfs:label "Sportif" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-:Epreuve a rdf:Class ;
-    rdfs:label "Épreuve" .
+olympics:JeuxOlympiques a rdfs:Class ;
+    rdfs:label "Jeux Olympiques" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-:Resultat a rdf:Class ;
-    rdfs:label "Résultat" .
+olympics:Epreuve a rdfs:Class ;
+    rdfs:label "Épreuve" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-# Définition des propriétés
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix : <#> .
+olympics:Resultat a rdfs:Class ;
+    rdfs:label "Résultat" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-:estInscritÀ rdf:property ;
-    rdfs:label "est inscrit à" ;
-    rdfs:domain :Sportif ;
-    rdfs:range :JeuxOlympiques .
+olympics:nom a rdf:Property ;
+    rdfs:label "nom" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-:aParticipéÀ rdf:property ;
-    rdfs:label "a participé à" ;
-    rdfs:domain :Sportif ;
-    rdfs:range :Epreuve .
+olympics:prenom a rdf:Property ;
+    rdfs:label "prénom" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-:aObtenu rdf:property ;
-    rdfs:label "a obtenu" ;
-    rdfs:domain :Sportif ;
-    rdfs:range :Resultat .
+olympics:dateNaissance a rdf:Property ;
+    rdfs:label "date de naissance" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-:aEpreuve rdf:property ;
-    rdfs:label "a épreuve" ;
-    rdfs:domain :Resultat ;
-    rdfs:range :Epreuve .
+olympics:sportPratique a rdf:Property ;
+    rdfs:label "sport pratiqué" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
 
-:aGagné rdf:property ;
-    rdfs:label "a gagné" ;
-    rdfs:domain :Resultat ;
-    rdfs:range xsd:boolean .
+olympics:medaille a rdf:Property ;
+    rdfs:label "médaille" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+olympics:annee a rdf:Property ;
+    rdfs:label "année" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+olympics:lieu a rdf:Property ;
+    rdfs:label "lieu" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+olympics:record a rdf:Property ;
+    rdfs:label "record" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
