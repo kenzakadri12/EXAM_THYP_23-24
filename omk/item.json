@@ -1,0 +1,16 @@
+[
+{"type":"header","version":"5.1.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"omeka"},
+{"type":"table","name":"item","database":"omeka","data":
+[
+{"id":"5","primary_media_id":null},
+{"id":"6","primary_media_id":null},
+{"id":"7","primary_media_id":null},
+{"id":"8","primary_media_id":null},
+{"id":"9","primary_media_id":null},
+{"id":"10","primary_media_id":null},
+{"id":"11","primary_media_id":null},
+{"id":"12","primary_media_id":null}
+]
+}
+]
