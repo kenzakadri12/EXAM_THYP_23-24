@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Items List</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+  }
+
+  h1 {
+    color: #333;
+  }
+
+  #searchTerm {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box; /* So the width includes padding */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  #itemsList {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  #itemsList li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  #itemsList img {
+    max-width: 100px;
+    max-height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  #itemsList li div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>
+<script>
+// Function to retrieve data from the API
+function getData() {
+  // Replace with your actual API URL
+  fetch('http://localhost/omeka-s/api/items')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => showItems(data))
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+// Function to display list of items
+function showItems(items) {
+  const itemsList = document.getElementById('itemsList');
+  itemsList.innerHTML = ''; // Clear the list
+
+  items.forEach(item => {
+    const listItem = document.createElement('li');
+    // Extracting the id, title and media information based on your API structure
+    const id = item['o:id'];
+    const title = item['o:title'] || 'No title available'; // Default text if title is not available
+    const media = item['thumbnail_display_urls'] ? item['thumbnail_display_urls']['large'] : 'No media available'; // Default text if media is not available
+
+    listItem.innerHTML = `ID: ${id}, Title: ${title}, Media: <img src="${media}" alt="${title}">`;
+    itemsList.appendChild(listItem);
+  });
+}
+
+// Function to filter the list of items by title
+function filterItems() {
+  const searchTerm = document.getElementById('searchTerm').value.toLowerCase();
+  const itemsList = document.getElementById('itemsList');
+  const items = Array.from(itemsList.childNodes);
+
+  // Filter based on the title text contained in the list items
+  const filteredItems = items.filter(item => item.textContent.toLowerCase().includes(searchTerm));
+
+  itemsList.innerHTML = ''; // Clear the list and show only filtered items
+  filteredItems.forEach(item => itemsList.appendChild(item));
+}
+
+// Run getData when the window loads
+window.onload = getData;
+</script>
+</head>
+<body>
+<h1>Items List</h1>
+<input type="text" id="searchTerm" oninput="filterItems()" placeholder="Filter items by title...">
+<ul id="itemsList">
+  <!-- Items will be displayed here -->
+</ul>
+</body>
+</html>
