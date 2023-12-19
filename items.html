@@ -21,7 +21,7 @@
     margin-bottom: 20px;
     padding: 10px;
     width: 100%;
-    box-sizing: border-box; /* So the width includes padding */
+    box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
@@ -58,7 +58,7 @@
 <script>
 // Function to retrieve data from the API
 function getData() {
-  // Replace with your actual API URL
+  
   fetch('http://localhost/omeka-s/api/items')
     .then(response => {
       if (!response.ok) {
@@ -73,14 +73,14 @@ function getData() {
 // Function to display list of items
 function showItems(items) {
   const itemsList = document.getElementById('itemsList');
-  itemsList.innerHTML = ''; // Clear the list
+  itemsList.innerHTML = ''; 
 
   items.forEach(item => {
     const listItem = document.createElement('li');
-    // Extracting the id, title and media information based on your API structure
+   
     const id = item['o:id'];
-    const title = item['o:title'] || 'No title available'; // Default text if title is not available
-    const media = item['thumbnail_display_urls'] ? item['thumbnail_display_urls']['large'] : 'No media available'; // Default text if media is not available
+    const title = item['o:title'] || 'No title available'; 
+    const media = item['thumbnail_display_urls'] ? item['thumbnail_display_urls']['large'] : 'No media available'; 
 
     listItem.innerHTML = `ID: ${id}, Title: ${title}, Media: <img src="${media}" alt="${title}">`;
     itemsList.appendChild(listItem);
@@ -100,7 +100,7 @@ function filterItems() {
   filteredItems.forEach(item => itemsList.appendChild(item));
 }
 
-// Run getData when the window loads
+
 window.onload = getData;
 </script>
 </head>
